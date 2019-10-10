@@ -7,20 +7,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ExpressionEvaluator {
-    private EvaluatorContext context = new EvaluatorContext();
-
     public List<String> evaluate(List<String> expressions) {
         List<String> results = new ArrayList<>();
-        expressions.forEach(expression -> {
-            results.add(evaluate(expression));
-            context = new EvaluatorContext();
-        });
-
+        expressions.forEach(expression -> results.add(evaluate(expression)));
         return results;
     }
 
     private String evaluate(String expression) {
-        for(char i : expression.toCharArray()) {
+        EvaluatorContext context = new EvaluatorContext();
+
+        for (char i : expression.toCharArray()) {
             try {
                 context.getNext(i);
             } catch (EvaluatorStateException e) {
