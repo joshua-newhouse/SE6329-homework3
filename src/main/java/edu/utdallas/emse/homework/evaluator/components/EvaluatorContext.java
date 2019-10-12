@@ -7,7 +7,7 @@ import edu.utdallas.emse.homework.evaluator.components.states.EvaluatorState;
 public class EvaluatorContext {
     private int currentTotal = 0;
     private int currentOperand = 0;
-    private BinaryOperator currentOperator = BinaryOperator.getOperator((char)0);
+    private BinaryOperator currentOperator = BinaryOperator.getOperator();
     private EvaluatorState currentState = EvaluatorStartState.getInstance();
     private EvaluatorState previousState = null;
 

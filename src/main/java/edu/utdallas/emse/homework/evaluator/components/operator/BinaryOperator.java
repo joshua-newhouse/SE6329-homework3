@@ -15,6 +15,10 @@ public abstract class BinaryOperator {
         symbolToOperator = Collections.unmodifiableMap(tmp);
     }
 
+    public static BinaryOperator getOperator() {
+        return getOperator((char)0);
+    }
+
     public static BinaryOperator getOperator(char symbol) {
         BinaryOperator retVal = symbolToOperator.get(symbol);
 
