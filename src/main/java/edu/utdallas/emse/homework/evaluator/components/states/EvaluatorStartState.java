@@ -3,7 +3,7 @@ package edu.utdallas.emse.homework.evaluator.components.states;
 import edu.utdallas.emse.homework.evaluator.components.EvaluatorContext;
 import edu.utdallas.emse.homework.evaluator.components.EvaluatorStateException;
 
-public class EvaluatorStartState implements EvaluatorState {
+class EvaluatorStartState implements EvaluatorState {
     public void consume(char input, EvaluatorContext context) {
         switch (input) {
             case ' ':

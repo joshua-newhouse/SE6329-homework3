@@ -4,7 +4,7 @@ import edu.utdallas.emse.homework.evaluator.components.BinaryOperator;
 import edu.utdallas.emse.homework.evaluator.components.EvaluatorContext;
 import edu.utdallas.emse.homework.evaluator.components.EvaluatorStateException;
 
-public class EvaluatorOperandState implements EvaluatorState {
+class EvaluatorOperandState implements EvaluatorState {
     public void consume(char input, EvaluatorContext context) {
         switch (input) {
             case '0':

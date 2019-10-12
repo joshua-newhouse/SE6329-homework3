@@ -4,7 +4,7 @@ import edu.utdallas.emse.homework.evaluator.components.BinaryOperator;
 import edu.utdallas.emse.homework.evaluator.components.EvaluatorContext;
 import edu.utdallas.emse.homework.evaluator.components.EvaluatorStateException;
 
-public class EvaluatorSpaceState implements EvaluatorState {
+class EvaluatorSpaceState implements EvaluatorState {
     public void consume(char input, EvaluatorContext context) {
         SpaceHandler handler = (context.getPreviousState() instanceof EvaluatorOperatorState) ?
                 new OperatorSpaceHandler() : new OperandSpaceHandler();
