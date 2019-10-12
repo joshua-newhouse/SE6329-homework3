@@ -48,19 +48,15 @@ public class EvaluatorSpaceState implements EvaluatorState {
         private static final String EXPECTED_INPUTS = "space, +,-, newline";
 
         public void handle(char input, EvaluatorContext context) {
-            switch (input) {
-                case '+':
-                case '-':
-                    context.operate();
-                    context.setCurrentOperator(BinaryOperator.getOperator(input));
-                    context.setState(EvaluatorOperatorState.getInstance());
-                    break;
-                case '\n':
-                    context.operate();
-                    context.setState(null);
-                    break;
-                default:
-                    throw new EvaluatorStateException(input, this.getClass(), EXPECTED_INPUTS);
+            if (BinaryOperator.getOperator(input) != null) {
+                context.operate();
+                context.setCurrentOperator(BinaryOperator.getOperator(input));
+                context.setState(EvaluatorOperatorState.getInstance());
+            } else if (input == '\n') {
+                context.operate();
+                context.setState(null);
+            } else {
+                throw new EvaluatorStateException(input, this.getClass(), EXPECTED_INPUTS);
             }
         }
     }

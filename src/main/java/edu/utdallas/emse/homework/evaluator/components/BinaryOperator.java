@@ -34,8 +34,7 @@ public enum BinaryOperator {
     }
 
     public static BinaryOperator getOperator(char op) {
-        BinaryOperator retVal = SYMBOL_TO_ENUM.get(op);
-        return retVal == null ? getDefaultOperator() : retVal;
+        return SYMBOL_TO_ENUM.get(op);
     }
 
     public int operate(int left, int right) {
