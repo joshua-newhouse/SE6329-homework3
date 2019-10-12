@@ -9,20 +9,40 @@ public abstract class BinaryOperator {
 
     static {
         Map<Character, BinaryOperator> tmp = new ConcurrentHashMap<>();
-        tmp.put('+', AdditionOperator.getInstance());
-        tmp.put('-', SubtractionOperator.getInstance());
+        tmp.put('+', new BinaryOperator() {
+            @Override
+            public int operate(int left, int right) {
+                return left + right;
+            }
+        });
+
+        tmp.put('-', new BinaryOperator() {
+            @Override
+            public int operate(int left, int right) {
+                return left - right;
+            }
+        });
+
+        /* Shift operator */
+        tmp.put((char)0, new BinaryOperator() {
+            @Override
+            public int operate(int left, int right) {
+                return right;
+            }
+        });
 
         symbolToOperator = Collections.unmodifiableMap(tmp);
     }
 
     public static BinaryOperator getOperator() {
+        /* Shift operator is the default */
         return getOperator((char)0);
     }
 
     public static BinaryOperator getOperator(char symbol) {
         BinaryOperator retVal = symbolToOperator.get(symbol);
 
-        return retVal == null ? ShiftOperator.getInstance() : retVal;
+        return retVal == null ? symbolToOperator.get((char)0) : retVal;
     }
 
     public abstract int operate(int left, int right);
