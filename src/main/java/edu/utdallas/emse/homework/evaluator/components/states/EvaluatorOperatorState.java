@@ -7,7 +7,7 @@ public class EvaluatorOperatorState implements EvaluatorState {
     public void consume(char input, EvaluatorContext context) {
         switch (input) {
             case ' ':
-                context.setState(new EvaluatorSpaceState());
+                context.setState(EvaluatorStatePool.getSpaceState());
                 break;
             case '1':
             case '2':
@@ -19,7 +19,7 @@ public class EvaluatorOperatorState implements EvaluatorState {
             case '8':
             case '9':
                 context.addToOperand(input - '0');
-                context.setState(new EvaluatorOperandState());
+                context.setState(EvaluatorStatePool.getOperandState());
                 break;
             default:
                 throw new EvaluatorStateException(input, this.getClass());

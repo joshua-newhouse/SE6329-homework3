@@ -1,7 +1,7 @@
 package edu.utdallas.emse.homework.evaluator.components;
 
-import edu.utdallas.emse.homework.evaluator.components.states.EvaluatorStartState;
 import edu.utdallas.emse.homework.evaluator.components.states.EvaluatorState;
+import edu.utdallas.emse.homework.evaluator.components.states.EvaluatorStatePool;
 
 import static edu.utdallas.emse.homework.evaluator.components.BinaryOperator.SHIFT;
 
@@ -9,7 +9,7 @@ public class EvaluatorContext {
     private int currentTotal = 0;
     private int currentOperand = 0;
     private BinaryOperator currentOperator = SHIFT;
-    private EvaluatorState currentState = new EvaluatorStartState();
+    private EvaluatorState currentState = EvaluatorStatePool.getStartState();
     private EvaluatorState previousState = null;
 
     public int getCurrentTotal() {

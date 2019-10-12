@@ -20,13 +20,13 @@ public class EvaluatorOperandState implements EvaluatorState {
                 context.addToOperand(input - '0');
                 break;
             case ' ':
-                context.setState(new EvaluatorSpaceState());
+                context.setState(EvaluatorStatePool.getSpaceState());
                 break;
             case '+':
             case '-':
                 context.operate();
                 context.setCurrentOperator(BinaryOperator.getOperator(input));
-                context.setState(new EvaluatorOperatorState());
+                context.setState(EvaluatorStatePool.getOperatorState());
                 break;
             case '\n':
                 context.operate();

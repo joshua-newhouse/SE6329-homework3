@@ -19,7 +19,7 @@ public class EvaluatorStartState implements EvaluatorState {
             case '8':
             case '9':
                 context.addToOperand(input - '0');
-                context.setState(new EvaluatorOperandState());
+                context.setState(EvaluatorStatePool.getOperandState());
                 break;
             default:
                 throw new EvaluatorStateException(input, this.getClass());

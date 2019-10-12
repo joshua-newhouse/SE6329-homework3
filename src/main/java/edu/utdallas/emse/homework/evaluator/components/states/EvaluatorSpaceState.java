@@ -17,10 +17,6 @@ public class EvaluatorSpaceState implements EvaluatorState {
         }
     }
 
-    private void throwException(char input) {
-        throw new EvaluatorStateException(input, this.getClass());
-    }
-
     private interface SpaceHandler {
         void handle(char input, EvaluatorContext context);
     }
@@ -38,10 +34,10 @@ public class EvaluatorSpaceState implements EvaluatorState {
                 case '8':
                 case '9':
                     context.addToOperand(input - '0');
-                    context.setState(new EvaluatorOperandState());
+                    context.setState(EvaluatorStatePool.getOperandState());
                     break;
                 default:
-                    throwException(input);
+                    throw new EvaluatorStateException(input, this.getClass());
             }
         }
     }
@@ -53,14 +49,14 @@ public class EvaluatorSpaceState implements EvaluatorState {
                 case '-':
                     context.operate();
                     context.setCurrentOperator(BinaryOperator.getOperator(input));
-                    context.setState(new EvaluatorOperatorState());
+                    context.setState(EvaluatorStatePool.getOperatorState());
                     break;
                 case '\n':
                     context.operate();
                     context.setState(null);
                     break;
                 default:
-                    throwException(input);
+                    throw new EvaluatorStateException(input, this.getClass());
             }
         }
     }
