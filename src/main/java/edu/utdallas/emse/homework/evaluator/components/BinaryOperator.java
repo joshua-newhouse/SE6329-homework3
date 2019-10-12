@@ -5,8 +5,8 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public enum BinaryOperator {
-    ADD((left, right) -> left + right ),
-    SUBTRACT((left, right) -> left - right ),
+    ADD((left, right) -> left + right),
+    SUBTRACT((left, right) -> left - right),
     LEFT_SHIFT((left, right) -> right);
 
     private static final Map<Character, BinaryOperator> SYMBOL_TO_ENUM;
@@ -16,7 +16,7 @@ public enum BinaryOperator {
         Map<Character, BinaryOperator> tmp = new ConcurrentHashMap<>();
         tmp.put('+', ADD);
         tmp.put('-', SUBTRACT);
-        tmp.put((char)0, LEFT_SHIFT);
+        tmp.put((char) 0, LEFT_SHIFT);
         SYMBOL_TO_ENUM = Collections.unmodifiableMap(tmp);
     }
 

@@ -15,7 +15,8 @@ public class EvaluatorSpaceState implements EvaluatorState {
         return INSTANCE;
     }
 
-    private EvaluatorSpaceState() {}
+    private EvaluatorSpaceState() {
+    }
 
     public void consume(char input, EvaluatorContext context) {
         SpaceHandler handler = (context.getPreviousState() instanceof EvaluatorOperatorState) ?
