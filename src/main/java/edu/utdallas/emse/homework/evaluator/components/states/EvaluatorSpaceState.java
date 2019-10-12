@@ -32,7 +32,7 @@ public class EvaluatorSpaceState implements EvaluatorState {
     }
 
     private class OperatorSpaceHandler implements SpaceHandler {
-        private static final String expectedInputs = "1-9, space";
+        private static final String EXPECTED_INPUTS = "1-9, space";
 
         public void handle(char input, EvaluatorContext context) {
             switch (input) {
@@ -49,13 +49,13 @@ public class EvaluatorSpaceState implements EvaluatorState {
                     context.setState(EvaluatorOperandState.getInstance());
                     break;
                 default:
-                    throw new EvaluatorStateException(input, this.getClass(), expectedInputs);
+                    throw new EvaluatorStateException(input, this.getClass(), EXPECTED_INPUTS);
             }
         }
     }
 
     private class OperandSpaceHandler implements SpaceHandler {
-        private static final String expectedInputs = "space, +,-, newline";
+        private static final String EXPECTED_INPUTS = "space, +,-, newline";
 
         public void handle(char input, EvaluatorContext context) {
             switch (input) {
@@ -70,7 +70,7 @@ public class EvaluatorSpaceState implements EvaluatorState {
                     context.setState(null);
                     break;
                 default:
-                    throw new EvaluatorStateException(input, this.getClass(), expectedInputs);
+                    throw new EvaluatorStateException(input, this.getClass(), EXPECTED_INPUTS);
             }
         }
     }

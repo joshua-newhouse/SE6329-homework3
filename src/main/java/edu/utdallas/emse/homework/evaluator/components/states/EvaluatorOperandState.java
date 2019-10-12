@@ -6,7 +6,7 @@ import edu.utdallas.emse.homework.evaluator.components.EvaluatorStateException;
 
 public class EvaluatorOperandState implements EvaluatorState {
     private static final EvaluatorOperandState INSTANCE;
-    private static final String expectedInputs = "0-9, space, newline, +,-";
+    private static final String EXPECTED_INPUTS = "0-9, space, newline, +,-";
 
     static {
         INSTANCE = new EvaluatorOperandState();
@@ -44,7 +44,7 @@ public class EvaluatorOperandState implements EvaluatorState {
                 context.setState(null);
                 break;
             default:
-                throw new EvaluatorStateException(input, this.getClass(), expectedInputs);
+                throw new EvaluatorStateException(input, this.getClass(), EXPECTED_INPUTS);
         }
     }
 }
