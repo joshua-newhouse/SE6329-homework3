@@ -15,6 +15,8 @@ public class EvaluatorOperatorState implements EvaluatorState {
         return INSTANCE;
     }
 
+    private EvaluatorOperatorState() {}
+
     public void consume(char input, EvaluatorContext context) {
         switch (input) {
             case ' ':
