@@ -1,6 +1,6 @@
 package edu.utdallas.emse.homework.evaluator.components.states;
 
-import edu.utdallas.emse.homework.evaluator.components.BinaryOperator;
+import edu.utdallas.emse.homework.evaluator.components.operator.BinaryOperator;
 import edu.utdallas.emse.homework.evaluator.components.EvaluatorContext;
 import edu.utdallas.emse.homework.evaluator.components.EvaluatorStateException;
 
