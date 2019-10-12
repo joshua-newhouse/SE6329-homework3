@@ -22,11 +22,8 @@ public class EvaluatorSpaceState implements EvaluatorState {
         SpaceHandler handler = (context.getPreviousState() instanceof EvaluatorOperatorState) ?
                 new OperatorSpaceHandler() : new OperandSpaceHandler();
 
-        switch (input) {
-            case ' ':
-                break;
-            default:
-                handler.handle(input, context);
+        if (input != ' ') {
+            handler.handle(input, context);
         }
     }
 
@@ -38,21 +35,11 @@ public class EvaluatorSpaceState implements EvaluatorState {
         private static final String EXPECTED_INPUTS = "1-9, space";
 
         public void handle(char input, EvaluatorContext context) {
-            switch (input) {
-                case '1':
-                case '2':
-                case '3':
-                case '4':
-                case '5':
-                case '6':
-                case '7':
-                case '8':
-                case '9':
-                    context.addToOperand(input - '0');
-                    context.setState(EvaluatorOperandState.getInstance());
-                    break;
-                default:
-                    throw new EvaluatorStateException(input, this.getClass(), EXPECTED_INPUTS);
+            if (input > '0' && input <= '9') {
+                context.addToOperand(input - '0');
+                context.setState(EvaluatorOperandState.getInstance());
+            } else {
+                throw new EvaluatorStateException(input, this.getClass(), EXPECTED_INPUTS);
             }
         }
     }
