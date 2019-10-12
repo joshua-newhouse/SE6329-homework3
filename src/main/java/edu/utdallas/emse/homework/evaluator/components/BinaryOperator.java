@@ -11,6 +11,7 @@ public enum BinaryOperator {
 
     private static final Map<Character, BinaryOperator> SYMBOL_TO_ENUM;
     private BinaryFunction func;
+    private static final String AVAILABLE_OPS;
 
     static {
         Map<Character, BinaryOperator> tmp = new ConcurrentHashMap<>();
@@ -18,6 +19,10 @@ public enum BinaryOperator {
         tmp.put('-', SUBTRACT);
         tmp.put((char) 0, LEFT_SHIFT);
         SYMBOL_TO_ENUM = Collections.unmodifiableMap(tmp);
+
+        StringBuilder sb = new StringBuilder();
+        SYMBOL_TO_ENUM.keySet().forEach(k -> sb.append(k));
+        AVAILABLE_OPS = sb.toString();
     }
 
     BinaryOperator(BinaryFunction f) {
@@ -39,5 +44,9 @@ public enum BinaryOperator {
 
     public int operate(int left, int right) {
         return func.getResult(left, right);
+    }
+
+    public static String getAvailable() {
+        return AVAILABLE_OPS;
     }
 }

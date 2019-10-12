@@ -32,7 +32,7 @@ public class EvaluatorSpaceState implements EvaluatorState {
     }
 
     private class OperatorSpaceHandler implements SpaceHandler {
-        private static final String EXPECTED_INPUTS = "1-9, space";
+        private final String EXPECTED_INPUTS = "1-9, space";
 
         public void handle(char input, EvaluatorContext context) {
             if (input > '0' && input <= '9') {
@@ -45,7 +45,7 @@ public class EvaluatorSpaceState implements EvaluatorState {
     }
 
     private class OperandSpaceHandler implements SpaceHandler {
-        private static final String EXPECTED_INPUTS = "space, +,-, newline";
+        private final String EXPECTED_INPUTS = "space, newline, " + BinaryOperator.getAvailable();
 
         public void handle(char input, EvaluatorContext context) {
             if (BinaryOperator.getOperator(input) != null) {
