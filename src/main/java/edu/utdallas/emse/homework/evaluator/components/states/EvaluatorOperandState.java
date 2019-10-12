@@ -4,7 +4,17 @@ import edu.utdallas.emse.homework.evaluator.components.BinaryOperator;
 import edu.utdallas.emse.homework.evaluator.components.EvaluatorContext;
 import edu.utdallas.emse.homework.evaluator.components.EvaluatorStateException;
 
-class EvaluatorOperandState implements EvaluatorState {
+public class EvaluatorOperandState implements EvaluatorState {
+    private static final EvaluatorOperandState INSTANCE;
+
+    static {
+        INSTANCE = new EvaluatorOperandState();
+    }
+
+    public static EvaluatorOperandState getInstance() {
+        return INSTANCE;
+    }
+
     public void consume(char input, EvaluatorContext context) {
         switch (input) {
             case '0':
@@ -20,13 +30,13 @@ class EvaluatorOperandState implements EvaluatorState {
                 context.addToOperand(input - '0');
                 break;
             case ' ':
-                context.setState(EvaluatorStatePool.getSpaceState());
+                context.setState(EvaluatorSpaceState.getInstance());
                 break;
             case '+':
             case '-':
                 context.operate();
                 context.setCurrentOperator(BinaryOperator.getOperator(input));
-                context.setState(EvaluatorStatePool.getOperatorState());
+                context.setState(EvaluatorOperatorState.getInstance());
                 break;
             case '\n':
                 context.operate();
