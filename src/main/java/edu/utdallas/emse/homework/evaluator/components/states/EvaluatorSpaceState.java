@@ -20,15 +20,27 @@ public class EvaluatorSpaceState implements EvaluatorState {
 
     public void consume(char input, EvaluatorContext context) {
         EvaluatorState transitionHandler = (context.getPreviousState() instanceof EvaluatorOperatorState) ?
-                new OperatorSpaceState() : new OperandSpaceState();
+                OperatorSpaceState.getInstance() : OperandSpaceState.getInstance();
 
         if (input != ' ') {
             transitionHandler.consume(input, context);
         }
     }
 
-    private class OperatorSpaceState implements EvaluatorState {
+    private static class OperatorSpaceState implements EvaluatorState {
+        private static final OperatorSpaceState INSTANCE;
         private final String EXPECTED_INPUTS = "1-9, space";
+
+        static {
+            INSTANCE = new OperatorSpaceState();
+        }
+
+        private OperatorSpaceState() {
+        }
+
+        public static OperatorSpaceState getInstance() {
+            return INSTANCE;
+        }
 
         @Override
         public void consume(char input, EvaluatorContext context) {
@@ -41,8 +53,20 @@ public class EvaluatorSpaceState implements EvaluatorState {
         }
     }
 
-    private class OperandSpaceState implements EvaluatorState {
+    private static class OperandSpaceState implements EvaluatorState {
+        private static final OperandSpaceState INSTANCE;
         private final String EXPECTED_INPUTS = "space, newline, " + BinaryOperator.getAvailable();
+
+        static {
+            INSTANCE = new OperandSpaceState();
+        }
+
+        private OperandSpaceState() {
+        }
+
+        public static OperandSpaceState getInstance() {
+            return INSTANCE;
+        }
 
         @Override
         public void consume(char input, EvaluatorContext context) {
