@@ -19,24 +19,13 @@ public class EvaluatorStartState implements EvaluatorState {
     }
 
     public void consume(char input, EvaluatorContext context) {
-        switch (input) {
-            case ' ':
-            case '0':
-                break;
-            case '1':
-            case '2':
-            case '3':
-            case '4':
-            case '5':
-            case '6':
-            case '7':
-            case '8':
-            case '9':
-                context.addToOperand(input - '0');
-                context.setState(EvaluatorOperandState.getInstance());
-                break;
-            default:
-                throw new EvaluatorStateException(input, this.getClass(), EXPECTED_INPUTS);
+        if (input == ' ' || input == '0') {
+            /* do nothing */
+        } else if (input > '0' && input <= '9') {
+            context.addToOperand(input - '0');
+            context.setState(EvaluatorOperandState.getInstance());
+        } else {
+            throw new EvaluatorStateException(input, this.getClass(), EXPECTED_INPUTS);
         }
     }
 }
